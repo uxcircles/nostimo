@@ -90,4 +90,4 @@ python3 -m http.server 5173
 | 營業時間 | `index.html` **和** `zh/index.html` 的 Visit 區塊與 JSON-LD |
 | 其他文字 | 中英文頁面是各自獨立的 HTML，改一邊記得也改另一邊 |
 | 照片 | 放進 `assets/img/`，建議做成 WebP，橫式 800 / 1600、直式 600 / 1200 兩種寬度 |
-| 改了 CSS／JS | 把六個頁面 `styles.css?v=6`、`main.js?v=4` 的版本號 +1，避免訪客看到快取的舊版 |
+| 改了 CSS／JS | 把六個頁面 `styles.css?v=7`、`main.js?v=4` 的版本號 +1，避免訪客看到快取的舊版 |
