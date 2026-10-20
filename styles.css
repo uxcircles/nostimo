@@ -4,9 +4,9 @@
    ========================================================================== */
 
 :root {
-  --lime: #f6f2ea;          /* whitewashed plaster */
-  --lime-2: #ede6d9;
-  --sand: #e3d6bf;
+  --lime: #ffffff;          /* Cycladic whitewash */
+  --lime-2: #f1f5f7;        /* whitewash in shade */
+  --sand: #e3eef5;          /* pale Aegean */
   --ink: #0e2630;           /* Aegean night, matches the teal brick in the photos */
   --ink-2: #163543;
   --ink-soft: #4a5d63;
@@ -16,7 +16,7 @@
   --clay-bright: #d8693c;
   --olive: #6d6b3c;
   --line: rgba(14, 38, 48, .14);
-  --line-light: rgba(246, 242, 234, .18);
+  --line-light: rgba(255, 255, 255, .18);
 
   --f-display: "Gloock", "Didot", "Bodoni 72", Georgia, serif;
   --f-greek: "GFS Didot", "Gloock", Georgia, serif;
@@ -101,7 +101,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .site-header { position: sticky; top: 0; z-index: 50; }
 .header-bar { position: relative; border-bottom: 1px solid transparent; transition: border-color .2s; }
 /* blur lives on a pseudo-element: a backdrop-filter on the bar itself would trap the fixed mobile nav inside it */
-.header-bar::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(246, 242, 234, .92); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
+.header-bar::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255, 255, 255, .92); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); }
 .site-header.is-scrolled .header-bar { border-color: var(--line); }
 .header-inner { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
 .brand { display: block; flex: none; }
@@ -271,7 +271,7 @@ section { position: relative; }
 .sharing-quote em { color: var(--clay); }
 .sharing-note { margin-top: 22px; color: var(--ink-soft); max-width: 28em; }
 .platters { display: grid; gap: 14px; }
-.platter { display: grid; grid-template-columns: 112px 1fr auto; gap: 18px; align-items: center; padding: 14px; background: var(--lime); border-radius: var(--radius); }
+.platter { display: grid; grid-template-columns: 112px 1fr auto; gap: 18px; align-items: center; padding: 14px; background: var(--lime); box-shadow: 0 10px 30px -22px rgba(14, 38, 48, .45); border-radius: var(--radius); }
 .platter img { width: 112px; height: 112px; object-fit: cover; border-radius: 10px; }
 .platter h3 { font-size: 1.375rem; }
 .platter p { font-size: .9375rem; color: var(--ink-soft); }
@@ -393,7 +393,7 @@ section { position: relative; }
 .menu-chips { display: none; }
 @media (max-width: 900px) {
   .menu-layout { grid-template-columns: 1fr; }
-  .menu-index { position: sticky; top: var(--nav-top, 106px); z-index: 20; margin-inline: calc(var(--gutter) * -1); padding: 12px var(--gutter); background: rgba(246, 242, 234, .96); border-bottom: 1px solid var(--line); gap: 10px; }
+  .menu-index { position: sticky; top: var(--nav-top, 106px); z-index: 20; margin-inline: calc(var(--gutter) * -1); padding: 12px var(--gutter); background: rgba(255, 255, 255, .96); border-bottom: 1px solid var(--line); gap: 10px; }
   .menu-index ol { display: flex; overflow-x: auto; gap: 6px; border: 0; scrollbar-width: none; }
   .menu-index ol::-webkit-scrollbar { display: none; }
   .menu-index a { white-space: nowrap; padding: 8px 14px; margin: 0; border: 1.5px solid var(--line); border-radius: 99px; font-size: .875rem; }
@@ -433,7 +433,7 @@ section { position: relative; }
    Book page
    ========================================================================== */
 .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; padding-bottom: clamp(72px, 9vw, 120px); }
-.book-widget { padding: clamp(20px, 3vw, 32px); background: #fff; border-radius: var(--radius); box-shadow: 0 30px 60px -40px rgba(14, 38, 48, .35); min-height: 420px; display: grid; gap: 18px; align-content: start; }
+.book-widget { border: 1px solid var(--line); padding: clamp(20px, 3vw, 32px); background: #fff; border-radius: var(--radius); box-shadow: 0 30px 60px -40px rgba(14, 38, 48, .35); min-height: 420px; display: grid; gap: 18px; align-content: start; }
 .book-widget h2 { font-size: 1.75rem; }
 .ot-slot { min-height: 300px; display: grid; justify-items: center; }
 .ot-slot iframe { max-width: 100%; }
