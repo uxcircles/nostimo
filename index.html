@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gloock&family=GFS+Didot&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/table-rose-600.webp" imagesrcset="assets/img/table-rose-600.webp 600w, assets/img/table-rose-1200.webp 1200w" imagesizes="(max-width: 860px) 86vw, 500px" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 
   <script type="application/ld+json">
   {
@@ -369,8 +369,8 @@
             </div>
           </div>
           <div class="map">
-            <!-- Leaflet is bundled in assets/vendor; it only loads when the map scrolls near the viewport -->
-            <div class="map-canvas" data-map data-lib="assets/vendor/leaflet/" data-lat="51.5247" data-lng="-0.1236" data-station="Russell Square" data-station-lat="51.5231" data-station-lng="-0.1243" role="img" aria-label="Map showing Nostimo in the Brunswick Centre, two minutes from Russell Square station"></div>
+            <!-- MapLibre is bundled in assets/vendor; the map (assets/map.js) only loads when it scrolls near the viewport -->
+            <div class="map-canvas" data-map data-lib="assets/vendor/maplibre/" data-src="assets/map.js" data-lat="51.5247" data-lng="-0.1236" data-station="Russell Square" data-station-lat="51.5231" data-station-lng="-0.1243" role="img" aria-label="Map showing Nostimo in the Brunswick Centre, two minutes from Russell Square station"></div>
             <a class="btn btn-ink btn-sm map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nostimo%2C%209%20Brunswick%20Centre%2C%20London%20WC1N%201AF" target="_blank" rel="noopener">Directions <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
           </div>
         </div>
@@ -424,6 +424,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=3" defer></script>
+  <script src="main.js?v=4" defer></script>
 </body>
 </html>

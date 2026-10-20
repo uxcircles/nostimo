@@ -373,15 +373,13 @@ section { position: relative; }
 .info-block .muted { font-size: .9375rem; color: var(--ink-soft); }
 .info-block a { text-underline-offset: 3px; }
 .map { position: relative; min-height: 440px; border-radius: var(--radius); overflow: hidden; background: var(--lime-2); box-shadow: 0 30px 60px -40px rgba(14, 38, 48, .45); }
-.map-canvas { position: absolute; inset: 0; background: var(--lime-2); font: inherit; }
+/* .map prefix: maplibre-gl.css loads later and sets the container to position: relative */
+.map .map-canvas { position: absolute; inset: 0; background: var(--lime-2); font: inherit; }
 .map-link { position: absolute; left: 16px; bottom: 16px; z-index: 500; }
-/* CARTO Positron is near-greyscale: lay it semi-transparent over the logo blue so the whole map takes the brand colour */
-.map-canvas.leaflet-container { background: var(--sea); }
-.map-canvas .leaflet-tile-pane { filter: grayscale(1) contrast(1.1); opacity: .67; }
-.map-canvas .leaflet-control-attribution { font-size: 10px; background: rgba(255, 255, 255, .8); }
-.map-canvas .leaflet-control-zoom a { color: var(--ink); }
-.map-canvas .leaflet-bottom.leaflet-right { max-width: 60%; }
-.map-pin { display: grid; justify-items: center; }
+.map-canvas .maplibregl-ctrl-attrib { font-size: 10px; }
+.map-canvas .maplibregl-ctrl-group { border-radius: 10px; box-shadow: 0 6px 16px -10px rgba(14, 38, 48, .5); }
+.map-canvas .maplibregl-cooperative-gesture-screen { font-family: var(--f-body); background: rgba(14, 38, 48, .55); }
+.map-pin { display: grid; justify-items: center; cursor: default; }
 .map-pin .pin {
   display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
   background: var(--sea); color: #fff; box-shadow: 0 10px 22px -8px rgba(0, 60, 95, .7); border: 3px solid #fff;

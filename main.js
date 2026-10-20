@@ -130,60 +130,28 @@
     });
   }
 
-  /* ---------- Map (Leaflet, loaded on demand) ---------- */
+  /* ---------- Map (MapLibre, loaded on demand) ---------- */
   const mapEl = $('[data-map]');
   if (mapEl) {
     const lib = mapEl.dataset.lib;
-    const loadLeaflet = () => new Promise((resolve, reject) => {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = `${lib}leaflet.css`;
-      document.head.append(css);
+    const addScript = (src) => new Promise((resolve, reject) => {
       const js = document.createElement('script');
-      js.src = `${lib}leaflet.js`;
+      js.src = src;
       js.onload = resolve;
       js.onerror = reject;
       document.head.append(js);
     });
-
-    // the "n" from the Nostimo logo
-    const MARK = '<svg viewBox="0 0 23.46 19.73" aria-hidden="true"><path fill="currentColor" d="m15.7,16.3V4.8c0-2.36-1.16-3.73-3.17-3.73-.73,0-1.63.17-2.44.56C12.14.21,14.5,0,15.53,0c1.41,0,5.7.43,5.7,5.62v10.98c0,2.32,1.29,2.87,2.23,3.13h-9.65c.81-.26,1.89-.9,1.89-3.43m-12.86.13V4.46C2.83,2.74,1.67,1.24,0,1.07L8.41,0v16.64c0,2.23,1.2,2.83,2.14,3.09H.64c.94-.26,2.19-.9,2.19-3.3"/></svg>';
-
-    const initMap = () => {
-      const { L } = window;
-      const home = [Number(mapEl.dataset.lat), Number(mapEl.dataset.lng)];
-      const station = [Number(mapEl.dataset.stationLat), Number(mapEl.dataset.stationLng)];
-      const map = L.map(mapEl, {
-        center: home,
-        zoom: 17,
-        scrollWheelZoom: false,
-        // one finger scrolls the page on phones; pinch still zooms
-        dragging: !L.Browser.mobile,
-        tap: false,
-      });
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        subdomains: 'abcd',
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      }).addTo(map);
-
-      L.marker(station, {
-        icon: L.divIcon({ className: 'map-station', html: `<span class="roundel"></span><span class="station-name">${mapEl.dataset.station}</span>`, iconSize: [14, 14], iconAnchor: [7, 7] }),
-        keyboard: false,
-        interactive: false,
-      }).addTo(map);
-
-      L.marker(home, {
-        icon: L.divIcon({ className: 'map-pin', html: `<span class="pin">${MARK}</span><span class="pin-label">Nostimo</span>`, iconSize: [46, 58], iconAnchor: [23, 58] }),
-        keyboard: false,
-        interactive: false,
-      }).addTo(map);
-
-      // keep both the restaurant and the station in view
-      map.fitBounds(L.latLngBounds([home, station]).pad(0.9), { maxZoom: 17 });
+    const start = () => {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = `${lib}maplibre-gl.css`;
+      document.head.append(css);
+      return addScript(`${lib}maplibre-gl.js`)
+        .then(() => addScript(mapEl.dataset.src))
+        .then(() => window.nostimoMap(mapEl))
+        // no WebGL or blocked scripts: keep the plain panel with its Directions button
+        .catch(() => mapEl.classList.add('is-failed'));
     };
-
-    const start = () => loadLeaflet().then(initMap).catch(() => mapEl.classList.add('is-failed'));
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         if (entries.some((en) => en.isIntersecting)) { io.disconnect(); start(); }
