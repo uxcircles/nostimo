@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/about-us", "destination": "/#story", "permanent": true },
+    { "source": "/food-drink", "destination": "/menu", "permanent": true },
+    { "source": "/culinary-gallery", "destination": "/#gallery", "permanent": true },
+    { "source": "/contact-us", "destination": "/book", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] }
+  ]
+}

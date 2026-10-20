@@ -1,0 +1,9 @@
+# Netlify / Cloudflare Pages: keep the old WordPress URLs working (Google results, Instagram bio links…)
+/about-us/          /#story       301
+/about-us           /#story       301
+/food-drink/        /menu.html    301
+/food-drink         /menu.html    301
+/culinary-gallery/  /#gallery     301
+/culinary-gallery   /#gallery     301
+/contact-us/        /book.html    301
+/contact-us         /book.html    301
