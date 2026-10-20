@@ -59,7 +59,7 @@ python3 -m http.server 5173
 
 | # | 問題 | 改版怎麼處理 |
 |---|---|---|
-| 1 | 全站**沒有營業時間** | 首頁 Visit 區塊預留位置（見下方待確認） |
+| 1 | 全站**沒有營業時間** | 首頁 Visit 區塊列出營業時間，也寫進 JSON-LD（見下方待確認） |
 | 2 | 首頁的 meta description 還是**八月的休假公告**，Google 搜尋結果和社群分享會顯示過期訊息 | 重寫各頁 description 與 og 標籤 |
 | 3 | 菜單**只有 PDF**，英文版 19.8 MB，手機很難打開；其中一顆「Click Here」按鈕連結是 `#`，點了沒反應 | 做成 HTML 菜單，可搜尋、有分類目錄；PDF 留作下載 |
 | 4 | 「BOOK NOW」導到聯絡表單，要等人工回覆；OpenTable 即時訂位藏在頁面下方 | 訂位頁直接放 OpenTable，6 人以上才請客人打電話 |
@@ -73,7 +73,7 @@ python3 -m http.server 5173
 ## 上線前待確認
 
 還需要店家提供：
-- [ ] **營業時間**：填入 `index.html` 的 Visit 區塊（搜尋 `TODO`），並在 JSON-LD 加上 `openingHoursSpecification`
+- [ ] **營業時間**：目前填的是週日至週四 11:30–22:00、週五週六 11:30–22:30，取自 Tripadvisor / OpenTable / DinerScout，與 Google 顯示的平日 22:00 打烊一致；布倫瑞克中心官網則寫每天到 23:00。請店家確認
 - [ ] **菜單 PDF**：目前連到 nostimo.london 上的檔案，換網域前要下載放進 `assets/menus/`，並改 `menu.html` 的連結
 - [ ] **飲料／酒單**：現在只有 PDF 連結，要不要也做成 HTML
 - [ ] **素食／純素／無麩質標示**：PDF 有圖例但看不出哪道菜有標，目前只在菜名寫明 vegetarian / vegan 的品項標了 V / VG

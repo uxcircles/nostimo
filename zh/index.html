@@ -52,6 +52,10 @@
     "menu": "https://uxcircles.github.io/nostimo/zh/menu.html",
     "acceptsReservations": true,
     "priceRange": "££",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "11:30", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "11:30", "closes": "22:30" }
+    ],
     "sameAs": ["https://www.instagram.com/nostimo.london/", "https://www.facebook.com/nostimo.london/"]
   }
   </script>
@@ -360,8 +364,8 @@
             </div>
             <div class="info-block">
               <h3>營業時間</h3>
-              <!-- TODO: 現有網站沒有公布營業時間。向店家確認後，填入這裡、book.html 和 JSON-LD（中英文版都要改）。 -->
-              <p>請來電確認當日營業時間。</p>
+              <!-- 營業時間取自 Tripadvisor / OpenTable / DinerScout（與 Google 顯示的平日 22:00 打烊一致），請向店家確認；中英文版和 JSON-LD 都要改。 -->
+              <p>週日至週四 · 11:30–22:00<br>週五、週六 · 11:30–22:30</p>
               <p class="muted">六人以上或當天訂位，請直接打電話給我們。</p>
             </div>
             <div class="info-block">

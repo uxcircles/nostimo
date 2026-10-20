@@ -51,6 +51,10 @@
     "menu": "https://uxcircles.github.io/nostimo/menu.html",
     "acceptsReservations": true,
     "priceRange": "££",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], "opens": "11:30", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "11:30", "closes": "22:30" }
+    ],
     "sameAs": ["https://www.instagram.com/nostimo.london/", "https://www.facebook.com/nostimo.london/"]
   }
   </script>
@@ -359,8 +363,8 @@
             </div>
             <div class="info-block">
               <h3>Opening hours</h3>
-              <!-- TODO: hours are not published anywhere on the current site. Ask the restaurant, then fill in here, in book.html and in the JSON-LD. -->
-              <p>Please call to check today's hours.</p>
+              <!-- Hours from Tripadvisor / OpenTable / DinerScout (they agree with Google's "closes 10 pm" on weekdays). Confirm with the restaurant; update here, in zh/index.html and in the JSON-LD. -->
+              <p>Sunday to Thursday · 11:30–22:00<br>Friday &amp; Saturday · 11:30–22:30</p>
               <p class="muted">For tables of more than six, or same-day bookings, phone us directly.</p>
             </div>
             <div class="info-block">
