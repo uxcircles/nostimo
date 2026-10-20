@@ -365,7 +365,6 @@ section { position: relative; }
 /* ---------- Visit ---------- */
 .visit { background: var(--sand); }
 .visit::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; background: var(--meander) repeat-x center top; opacity: .45; }
-.map-canvas.leaflet-container { background: var(--lime-2); }
 .visit-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: stretch; }
 .visit-info { display: grid; gap: 28px; align-content: start; }
 .info-block { display: grid; gap: 6px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
@@ -376,8 +375,9 @@ section { position: relative; }
 .map { position: relative; min-height: 440px; border-radius: var(--radius); overflow: hidden; background: var(--lime-2); box-shadow: 0 30px 60px -40px rgba(14, 38, 48, .45); }
 .map-canvas { position: absolute; inset: 0; background: var(--lime-2); font: inherit; }
 .map-link { position: absolute; left: 16px; bottom: 16px; z-index: 500; }
-/* CARTO Positron is near-greyscale: push it toward whitewash and Aegean blue */
-.map-canvas .leaflet-tile-pane { filter: grayscale(1) sepia(.35) hue-rotate(176deg) saturate(1.05) brightness(1.02); }
+/* CARTO Positron is near-greyscale: lay it semi-transparent over the logo blue so the whole map takes the brand colour */
+.map-canvas.leaflet-container { background: var(--sea); }
+.map-canvas .leaflet-tile-pane { filter: grayscale(1) contrast(1.1); opacity: .67; }
 .map-canvas .leaflet-control-attribution { font-size: 10px; background: rgba(255, 255, 255, .8); }
 .map-canvas .leaflet-control-zoom a { color: var(--ink); }
 .map-canvas .leaflet-bottom.leaflet-right { max-width: 60%; }
