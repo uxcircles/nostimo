@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gloock&family=GFS+Didot&family=Hanken+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="../assets/img/table-rose-600.webp" imagesrcset="../assets/img/table-rose-600.webp 600w, ../assets/img/table-rose-1200.webp 1200w" imagesizes="(max-width: 860px) 86vw, 500px" fetchpriority="high">
-  <link rel="stylesheet" href="../styles.css?v=3">
+  <link rel="stylesheet" href="../styles.css?v=4">
 
   <script type="application/ld+json">
   {
@@ -44,7 +44,7 @@
       "postalCode": "WC1N 1AF",
       "addressCountry": "GB"
     },
-    "geo": { "@type": "GeoCoordinates", "latitude": 51.5244, "longitude": -0.1236 },
+    "geo": { "@type": "GeoCoordinates", "latitude": 51.5247, "longitude": -0.1236 },
     "telephone": "+442070524471",
     "email": "info@nostimo.london",
     "url": "https://uxcircles.github.io/nostimo/zh/",
@@ -344,10 +344,8 @@
       </dialog>
     </section>
 
-    <div class="wrap"><div class="meander" aria-hidden="true"></div></div>
-
     <!-- Visit -->
-    <section class="section" id="visit" aria-labelledby="visit-title">
+    <section class="section visit" id="visit" aria-labelledby="visit-title">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">交通資訊</p>
@@ -372,7 +370,8 @@
             </div>
           </div>
           <div class="map">
-            <iframe title="Nostimo 在布倫瑞克中心的位置地圖" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1290%2C51.5218%2C-0.1182%2C51.5270&amp;layer=mapnik&amp;marker=51.5244%2C-0.1236" loading="lazy"></iframe>
+            <!-- Leaflet 放在 ../assets/vendor，地圖快捲到畫面上才載入 -->
+            <div class="map-canvas" data-map data-lib="../assets/vendor/leaflet/" data-lat="51.5247" data-lng="-0.1236" data-station="羅素廣場站" data-station-lat="51.5231" data-station-lng="-0.1243" role="img" aria-label="地圖：Nostimo 位於布倫瑞克中心，距離羅素廣場站步行兩分鐘"></div>
             <a class="btn btn-ink btn-sm map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Nostimo%2C%209%20Brunswick%20Centre%2C%20London%20WC1N%201AF" target="_blank" rel="noopener">路線導航 <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></a>
           </div>
         </div>
@@ -426,6 +425,6 @@
     </div>
   </footer>
 
-  <script src="../main.js?v=2" defer></script>
+  <script src="../main.js?v=3" defer></script>
 </body>
 </html>

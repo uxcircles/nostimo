@@ -62,6 +62,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 body.is-locked { overflow: hidden; }
+/* a whisper of limewash grain so the white reads as plaster, not a blank screen */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .05 0 0 0 0 .15 0 0 0 0 .2 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 button { font: inherit; color: inherit; }
@@ -145,6 +150,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .call-link span { display: none; }
   .call-link { width: 46px; height: 46px; justify-content: center; border: 1.5px solid var(--line); border-radius: 50%; padding: 0; }
   .burger { display: block; }
+  .header-actions { margin-left: auto; }
   .nav {
     position: fixed; inset: 0; top: var(--nav-top, 106px); z-index: 40;
     background: var(--lime); padding: 28px var(--gutter) 40px; overflow-y: auto;
@@ -183,7 +189,7 @@ section { position: relative; }
 @media (max-width: 760px) { .section-head.split { grid-template-columns: 1fr; } }
 
 /* ---------- Hero ---------- */
-.hero { padding-block: clamp(36px, 6vw, 80px) clamp(64px, 8vw, 112px); overflow: hidden; }
+.hero { padding-block: clamp(36px, 6vw, 80px) clamp(64px, 8vw, 112px); overflow: hidden; background: linear-gradient(180deg, var(--lime) 55%, #e9f2f8 100%); }
 .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
 .hero-copy { display: grid; gap: 28px; justify-items: start; }
 .hero-title em { font-style: italic; color: var(--sea); }
@@ -203,7 +209,7 @@ section { position: relative; }
 .hero-alt { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .9375rem; color: var(--ink-soft); }
 .hero-alt a { font-weight: 600; color: var(--ink); text-underline-offset: 3px; }
 
-.hero-visual { position: relative; justify-self: end; width: min(100%, 500px); }
+.hero-visual { position: relative; isolation: isolate; justify-self: end; width: min(100%, 500px); }
 .arch { border-radius: var(--arch); overflow: hidden; background: var(--sand); }
 .arch img { width: 100%; height: 100%; object-fit: cover; }
 .hero-visual .arch { aspect-ratio: 4 / 5.4; box-shadow: 0 40px 80px -40px rgba(14, 38, 48, .45); }
@@ -357,6 +363,9 @@ section { position: relative; }
 @media (max-width: 640px) { .lb-prev, .lb-next { top: auto; bottom: 16px; margin-top: 0; } }
 
 /* ---------- Visit ---------- */
+.visit { background: var(--sand); }
+.visit::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; background: var(--meander) repeat-x center top; opacity: .45; }
+.map-canvas.leaflet-container { background: var(--lime-2); }
 .visit-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: stretch; }
 .visit-info { display: grid; gap: 28px; align-content: start; }
 .info-block { display: grid; gap: 6px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
@@ -364,9 +373,28 @@ section { position: relative; }
 .info-block p, .info-block address { font-style: normal; font-size: 1.125rem; }
 .info-block .muted { font-size: .9375rem; color: var(--ink-soft); }
 .info-block a { text-underline-offset: 3px; }
-.map { position: relative; min-height: 420px; border-radius: var(--radius); overflow: hidden; background: var(--sand); }
-.map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: saturate(.75) contrast(1.02); }
-.map-link { position: absolute; left: 16px; bottom: 16px; }
+.map { position: relative; min-height: 440px; border-radius: var(--radius); overflow: hidden; background: var(--lime-2); box-shadow: 0 30px 60px -40px rgba(14, 38, 48, .45); }
+.map-canvas { position: absolute; inset: 0; background: var(--lime-2); font: inherit; }
+.map-link { position: absolute; left: 16px; bottom: 16px; z-index: 500; }
+/* CARTO Positron is near-greyscale: push it toward whitewash and Aegean blue */
+.map-canvas .leaflet-tile-pane { filter: grayscale(1) sepia(.35) hue-rotate(176deg) saturate(1.05) brightness(1.02); }
+.map-canvas .leaflet-control-attribution { font-size: 10px; background: rgba(255, 255, 255, .8); }
+.map-canvas .leaflet-control-zoom a { color: var(--ink); }
+.map-canvas .leaflet-bottom.leaflet-right { max-width: 60%; }
+.map-pin { display: grid; justify-items: center; }
+.map-pin .pin {
+  display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: var(--sea); color: #fff; box-shadow: 0 10px 22px -8px rgba(0, 60, 95, .7); border: 3px solid #fff;
+}
+.map-pin .pin svg { width: 20px; transform: rotate(45deg) translateY(1px); }
+.map-pin .pin-label {
+  position: absolute; left: 54px; top: 8px; padding: 5px 12px; border-radius: 99px; white-space: nowrap;
+  background: var(--ink); color: #fff; font: 600 .875rem/1.3 var(--f-body); box-shadow: 0 8px 18px -10px rgba(14, 38, 48, .7);
+}
+.map-station { position: relative; }
+.map-station .roundel { display: block; box-sizing: border-box; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #dc241f; background: #fff; box-shadow: 0 0 0 1.5px #fff; }
+.map-station .station-name { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); padding: 2px 8px; border-radius: 6px; white-space: nowrap; background: rgba(255, 255, 255, .92); color: var(--ink); font: 600 .75rem/1.4 var(--f-body); }
+.map.is-failed .map-canvas, .map-canvas.is-failed { background: var(--lime-2) var(--meander) repeat-x center; }
 @media (max-width: 860px) { .visit-grid { grid-template-columns: 1fr; } .map { min-height: 340px; } }
 
 /* ---------- Book CTA band ---------- */
