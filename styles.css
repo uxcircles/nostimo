@@ -92,6 +92,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .concept-short { display: none; }
 .concept-bar a { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; white-space: nowrap; }
 .concept-bar a:hover strong { text-decoration: underline; }
+.concept-bar .concept-long a { display: inline; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(215, 227, 230, .5); }
+.concept-bar .concept-long a:hover { text-decoration-color: currentColor; }
 @media (max-width: 640px) { .concept-long { display: none; } .concept-short { display: inline; } }
 @media (max-width: 420px) { .concept-short { display: none; } }
 
