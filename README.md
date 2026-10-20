@@ -75,6 +75,7 @@ python3 -m http.server 5173
 還需要店家提供：
 - [ ] **營業時間**：目前填的是週日至週四 11:30–22:00、週五週六 11:30–22:30，取自 Tripadvisor / OpenTable / DinerScout，與 Google 顯示的平日 22:00 打烊一致；布倫瑞克中心官網則寫每天到 23:00。請店家確認
 - [ ] **菜單 PDF**：目前連到 nostimo.london 上的檔案，換網域前要下載放進 `assets/menus/`，並改 `menu.html` 的連結
+- [ ] **線上點餐**：「Order online」連到店家現有的 Foodo 點餐頁（nostimorestaurant.co.uk/menu），請確認這是他們想讓客人用的點餐管道
 - [ ] **飲料／酒單**：現在只有 PDF 連結，要不要也做成 HTML
 - [ ] **素食／純素／無麩質標示**：PDF 有圖例但看不出哪道菜有標，目前只在菜名寫明 vegetarian / vegan 的品項標了 V / VG
 - [ ] **故事區的事實**：「Nikos & Alex」出自菜單 PDF，「covered terrace」出自第三方評論，請店家確認
