@@ -176,6 +176,9 @@ section { position: relative; }
 .definition .pron { font-size: .875rem; color: var(--ink-soft); }
 .definition .pron i { font-family: var(--f-display); font-style: italic; }
 .definition .mean { font-size: 1rem; }
+.on-dark .definition { background: rgba(255, 255, 255, .06); border-left-color: var(--clay-bright); }
+.on-dark .definition .word { color: var(--clay-bright); }
+.on-dark .definition .pron { color: #b8c8cc; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-alt { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .9375rem; color: var(--ink-soft); }
 .hero-alt a { font-weight: 600; color: var(--ink); text-underline-offset: 3px; }
