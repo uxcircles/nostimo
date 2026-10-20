@@ -5,6 +5,9 @@
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => [...root.querySelectorAll(s)];
   const mobile = window.matchMedia('(max-width: 960px)');
+  const T = doc.lang.startsWith('zh')
+    ? { open: '開啟選單', close: '關閉選單' }
+    : { open: 'Open menu', close: 'Close menu' };
 
   /* ---------- Header: hairline once scrolled, and where the mobile sheet starts ---------- */
   const header = $('[data-header]');
@@ -24,7 +27,7 @@
     setHeaderVars();
     nav.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    burger.setAttribute('aria-label', open ? T.close : T.open);
     document.body.classList.toggle('is-locked', open);
   };
   burger.addEventListener('click', () => setNav(!nav.classList.contains('is-open')));
