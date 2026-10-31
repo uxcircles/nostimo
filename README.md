@@ -55,34 +55,6 @@ python3 -m http.server 5173
 - **地圖**：MapLibre 向量地圖，街道資料來自 OpenFreeMap（免費、不需金鑰），每一層顏色都照網站配色自訂：石灰白地面、淡愛琴海藍建築、白色街道、橄欖綠公園、愛琴海藍水域；自訂 logo「n」定位針和羅素廣場地鐵站標示。手機單指會捲動頁面，兩指才移動地圖
 - **母題**：基克拉澤斯拱門形狀的照片框、藍色圓頂、希臘回紋分隔線、`νόστιμο` 字典詞條
 
-## 現有網站檢視結果（2026-10-20）
-
-| # | 問題 | 改版怎麼處理 |
-|---|---|---|
-| 1 | 全站**沒有營業時間** | 首頁 Visit 區塊列出營業時間，也寫進 JSON-LD（見下方待確認） |
-| 2 | 首頁的 meta description 還是**八月的休假公告**，Google 搜尋結果和社群分享會顯示過期訊息 | 重寫各頁 description 與 og 標籤 |
-| 3 | 菜單**只有 PDF**，英文版 19.8 MB，手機很難打開；其中一顆「Click Here」按鈕連結是 `#`，點了沒反應 | 做成 HTML 菜單，可搜尋、有分類目錄；PDF 留作下載 |
-| 4 | 「BOOK NOW」導到聯絡表單，要等人工回覆；OpenTable 即時訂位藏在頁面下方 | 訂位頁直接放 OpenTable，6 人以上才請客人打電話 |
-| 5 | Email 連結寫成 `mailto:mailto:info@…`，點了會開出錯誤地址 | 修正 |
-| 6 | 大部分頁面**沒有 H1**，菜單頁的 H1 是「ORDER NOW」 | 每頁一個正確的 H1，標題層級完整 |
-| 7 | 相簿 44 張照片有 42 張 **alt 是空的**，讀屏軟體和 Google 圖片搜尋都看不到內容 | 每張照片都有描述 |
-| 8 | 結構化資料只有 Organization，沒有地址、電話、菜單 | 改用 Restaurant，含地址、座標、電話、菜單連結 |
-| 9 | WordPress 每頁載入 15–29 支 script、約 100 KB 行內 CSS | 一支 CSS、一支 JS，沒有第三方追蹤 |
-| 10 | Cookie 橫幅寫「繼續使用即視為同意」，不符合 UK GDPR 的同意要求 | 新網站不設 cookie，不需要橫幅 |
-
-## 上線前待確認
-
-還需要店家提供：
-- [ ] **營業時間**：目前填的是週日至週四 11:30–22:00、週五週六 11:30–22:30，取自 Tripadvisor / OpenTable / DinerScout，與 Google 顯示的平日 22:00 打烊一致；布倫瑞克中心官網則寫每天到 23:00。請店家確認
-- [ ] **菜單 PDF**：目前連到 nostimo.london 上的檔案，換網域前要下載放進 `assets/menus/`，並改 `menu.html` 的連結
-- [ ] **線上點餐**：「Order online」連到店家現有的 Foodo 點餐頁（nostimorestaurant.co.uk/menu），請確認這是他們想讓客人用的點餐管道
-- [ ] **飲料／酒單**：現在只有 PDF 連結，要不要也做成 HTML
-- [ ] **素食／純素／無麩質標示**：PDF 有圖例但看不出哪道菜有標，目前只在菜名寫明 vegetarian / vegan 的品項標了 V / VG
-- [ ] **故事區的事實**：「Nikos & Alex」出自菜單 PDF，「covered terrace」出自第三方評論，請店家確認
-- [x] **地圖定位點**：已改用 Google 地圖店家頁面的座標（51.52397, -0.12320）
-- [ ] 菜單價格以 2025–2026 英文 PDF 為準，請店家確認是否有更新
-- [ ] 中文版翻譯請母語人士再順一次，尤其是菜名（目前中文菜單每道菜下方都保留英文原名，方便點餐時對照）
-
 ## 日常更新
 
 | 要改什麼 | 改哪裡 |
@@ -92,3 +64,15 @@ python3 -m http.server 5173
 | 其他文字 | 中英文頁面是各自獨立的 HTML，改一邊記得也改另一邊 |
 | 照片 | 放進 `assets/img/`，建議做成 WebP，橫式 800 / 1600、直式 600 / 1200 兩種寬度 |
 | 改了 CSS／JS | 把六個頁面 `styles.css?v=8`、`main.js?v=4` 的版本號 +1，避免訪客看到快取的舊版 |
+
+## 內部筆記
+
+原網站檢視結果、待店家確認事項和 pitch 資料放在本機的 `.private/`（已被 `.gitignore` 排除，不會進 git）。
+
+第一次 clone 後啟用 git hooks：
+
+```
+git config core.hooksPath .githooks
+```
+
+之後每次 commit / push 會擋下 `.private/` 的檔案和 `.private/blocklist.txt` 裡的敏感字詞，並列出 `.private/NOTES.md` 裡未完成的待辦。隨時查看：`sh .githooks/remind.sh`
